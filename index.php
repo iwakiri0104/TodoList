@@ -1,28 +1,15 @@
 <?php
 require_once('function.php');
 
+//DB接続
 $dbh = dbconnect();
 
-//キーワード入力されたら実行
-if(!empty($_POST['keyword'])){
 
-    $keyword = $_POST["keyword"];
-
-    $SearchResults = getSearchResult($dbh, $keyword);
-    $page = $SearchResults[0];
-    $total_results = $SearchResults[1];
-    $total_pages = $SearchResults[2];
-    $todo_datas = $SearchResults[3];
-
-}else{
-//されなければ通常表示
-
-    $todoInfo = getTodos($dbh);
-    $page = $todoInfo[0];
-    $total_pages = $todoInfo[1];
-    $todo_datas = $todoInfo[2];
-
-}
+//todo一覧、ページ、トータルページ、一ページに表示するtodo
+$todoInfo = getTodos($dbh);
+$page = $todoInfo[0];
+$total_pages = $todoInfo[1];
+$todo_datas = $todoInfo[2];
 
 
 //新規投稿、編集機能実行
@@ -59,7 +46,7 @@ if($_POST['title'] && $_POST['content']){
 </h1>
 
     <!-- 検索ボックス -->
-<form action="" method="POST">
+<form action="serch.php" method="get">
     <input type="text" name="keyword" style="margin: 10px">
      <button type="submit" >ToDo検索</button>
 </form>
