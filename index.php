@@ -1,33 +1,6 @@
 <?php
 require_once('function.php');
 
-//DB接続
-$dbh = dbconnect();
-
-
-//todo一覧、ページ、トータルページ、一ページに表示するtodo
-$todoInfo = getTodos($dbh);
-$page = $todoInfo[0];
-$total_pages = $todoInfo[1];
-$todo_datas = $todoInfo[2];
-
-
-//新規投稿、編集機能実行
-if($_POST['title'] && $_POST['content']){
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    insertToDo($dbh,$title,$content);
-    
-}elseif($_POST['title_edit'] && $_POST['content_edit'] && $_POST['id'])
-{
-    $id = $_POST['id'];
-    $title_edit = $_POST['title_edit'];
-    $content_edit = $_POST['content_edit'];
-
-    editToDo($dbh,$id,$title_edit,$content_edit);
-}
-
-
 ?>
 
 

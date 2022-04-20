@@ -1,20 +1,6 @@
 <?php
-require_once('function.php');
-
-$dbh = dbconnect();
-
-
-    $keyword = $_GET["keyword"];
-
-    $SearchResults = getSearchResult($dbh, $keyword);
-    $page = $SearchResults[0];
-    $total_results = $SearchResults[1];
-    $total_pages = $SearchResults[2];
-    $todo_datas = $SearchResults[3];
 
 ?>
-
-
 <!doctype html>
 <html lang="ja">
 <head>
