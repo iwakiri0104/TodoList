@@ -3,6 +3,7 @@ require_once(__DIR__ . "/application/function.php");
 require_once(__DIR__ . "/class/todo.php");
 
 $id = $_GET['id'];
+//↓DBクラスに統合する
 $result = serch_fromID($dbh,$id);
 
 ?>
