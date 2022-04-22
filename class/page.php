@@ -6,7 +6,7 @@ require_once __DIR__ . '/../application/db.php';
 class page extends DB{
 
     public function TotalTodos(){
-        return parent::selectAll('SELECT count(*) FROM todo');
+        return $this->dbh->query("SELECT count(*) FROM todo")->fetchColumn();
     }
 
     public function TotalPages(){
@@ -14,7 +14,7 @@ class page extends DB{
     }
 
     public function nowpage(){
-        if (!isset($_GET['page'])) return 1;
+        if (!isset($_GET['page'])) return (int)1;
         if ($_GET['page'] > self::totalPages()) return self::totalPages();
         if ($_GET['page'] < self::totalPages()) return $_GET['page'];
     }
@@ -24,7 +24,8 @@ class page extends DB{
     }
 
 }
-$page = new page();
+$pages = new page();
+
 
 
 ?>

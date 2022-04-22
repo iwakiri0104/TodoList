@@ -4,7 +4,7 @@ require_once(__DIR__ . "/class/page.php");
 require_once(__DIR__ . "/class/todo.php");
 
 
-$items = $page->selectAll("SELECT * FROM todo WHERE 1 limit " . $page->offset() . "," . 5);
+$items = $pages->selectAll("SELECT * FROM todo WHERE 1 limit " . $pages->offset() . "," . 5);
 ?>
 
 <!doctype html>
@@ -18,7 +18,7 @@ $items = $page->selectAll("SELECT * FROM todo WHERE 1 limit " . $page->offset() 
 </head>
 <body>
 <h1>
-    ToDo一覧
+    おまえがすべきこと一覧
 </h1>
 
     <!-- 検索ボックス -->
@@ -57,24 +57,22 @@ $items = $page->selectAll("SELECT * FROM todo WHERE 1 limit " . $page->offset() 
     <?php endforeach; ?>
 </table>
 
-    ページング
-    <?php if ($page->nowpage() > 1): ?>
-        <a href="?page=<?= Escape($page->nowpage())-1 ?>">前へ</a>
+    <!-- ページング -->
+    <?php if ($pages->nowpage() > 1): ?>
+        <a href="?page=<?= Escape($pages->nowpage())-1 ?>">前へ</a>
     <?php endif; ?>
 
-    <?php for ($i = 1; $i <= $page->TotalPages(); $i++): ?>
-        <?php if ($page->nowpage() == $i): ?>
+    <?php for ($i = 1; $i <= $pages->TotalPages(); $i++): ?>
+        <?php if ($pages->nowpage() == $i): ?>
             <strong><a href="?page=<?= Escape($i); ?>"><?= Escape($i); ?></a></strong>
         <?php else: ?>
             <a href="?page=<?= Escape($i); ?>"><?= Escape($i); ?></a>
         <?php endif; ?>
     <?php endfor; ?>
 
-    <?php if ($page->nowpage() < $page->Totalpages()): ?>
-        <a href="?page=<?= Escape($page)+1 ?>">次へ</a>
+    <?php if ($pages->nowpage() < $pages->TotalPages()): ?>
+        <a href="?page=<?= Escape($pages->nowpage())+1 ?>">次へ</a>
     <?php endif; ?>
-
-
 
 
 </body>
