@@ -1,32 +1,30 @@
 <?php
-require_once('function.php');
+require_once __DIR__ . '/../application/config.php';
+require_once __DIR__ . '/../application/function.php';
+require_once __DIR__ . '/../application/db.php';
 
-class Page
-{
-    //検索結果表示
-    public function getSearchResult($dbh, $keyword) {
-        define("max_per_page", 5);
+class page extends DB{
 
-        $total_todo_sql = "SELECT count(*) FROM todo WHERE title like ?";
-        $stmt = $dbh->prepare($total_todo_sql);
-        $keywords[] = "%" . $keyword . "%";
-        $stmt->execute($keywords);
-
-        $total_results = $stmt->fetchColumn();
-        $total_pages = ceil($total_results / max_per_page);
-
-        $page = GetPage();
-
-        // データ取得のスタート地点
-        $offset = ($page - 1) * max_per_page ;
-
-        $sql = "SELECT * FROM todo WHERE title like ? limit ". $offset . "," . max_per_page;
-        $stmt = $dbh->prepare($sql);
-        $data[] = "%" . $keyword . "%";
-        $stmt->execute($data);
-        $todo_datas = $stmt->fetchAll();
-        return [$page, $total_results, $total_pages, $todo_datas];
+    public function TotalTodos(){
+        return parent::selectAll('SELECT count(*) FROM todo');
     }
+
+    public function TotalPages(){
+        return ceil(self::TotalTodos() / 5);
+    }
+
+    public function nowpage(){
+        if (!isset($_GET['page'])) return 1;
+        if ($_GET['page'] > self::totalPages()) return self::totalPages();
+        if ($_GET['page'] < self::totalPages()) return $_GET['page'];
+    }
+
+    public function offset(){
+        return (self::nowpage() - 1) * 5;
+    }
+
 }
+$page = new page();
+
 
 ?>

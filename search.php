@@ -1,6 +1,15 @@
 <?php
-
+require_once(__DIR__ . "/application/config.php");
+require_once(__DIR__ . "/application/function.php");
+require_once(__DIR__ . "/class/page.php");
+$keyword = $_GET["keyword"];
+$SearchResults = getSearchResult($dbh, $keyword);
+$page = $SearchResults[0];
+$total_results = $SearchResults[1];
+$total_pages = $SearchResults[2];
+$todo_datas = $SearchResults[3];
 ?>
+
 <!doctype html>
 <html lang="ja">
 <head>
@@ -39,7 +48,6 @@
         <td><?php echo $data['created_at'] ?></td>
         <td>
             <a href="edit.php?id=<?php echo $data["ID"]?>">編集</a>
-        </td>
         <td>
             <a href="delete.php?id=<?php echo $data["ID"]?>">削除</a>
         </td>
@@ -47,21 +55,22 @@
     <?php endforeach; ?>
 </table>
 
+
     <!-- ページング -->
     <?php if ($page > 1): ?>
-        <a href="?page=<?= Escape($page)-1 ?>&keyword=<?= Escape($keyword); ?>">前へ</a>
+        <a href="?page=<?= Escape($page)-1 ?>">前へ</a>
     <?php endif; ?>
 
     <?php for ($i = 1; $i <= $total_pages; $i++): ?>
         <?php if ($page == $i): ?>
-            <strong><a href="?page=<?= Escape($i); ?>&keyword=<?= Escape($keyword); ?>"><?= Escape($i); ?></a></strong>
+            <strong><a href="?page=<?= Escape($i); ?>"><?= Escape($i); ?></a></strong>
         <?php else: ?>
-            <a href="?page=<?= Escape($i); ?>&keyword=<?= Escape($keyword); ?>"><?= Escape($i); ?></a>
+            <a href="?page=<?= Escape($i); ?>"><?= Escape($i); ?></a>
         <?php endif; ?>
     <?php endfor; ?>
 
     <?php if ($page < $total_pages): ?>
-        <a href="?page=<?= Escape($page)+1 ?>&keyword=<?= Escape($keyword); ?>">次へ</a>
+        <a href="?page=<?= Escape($page)+1 ?>">次へ</a>
     <?php endif; ?>
 
  <form action="index.php">

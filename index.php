@@ -1,8 +1,11 @@
 <?php
-require_once('function.php');
+require_once(__DIR__ . "/application/function.php");
+require_once(__DIR__ . "/class/page.php");
+require_once(__DIR__ . "/class/todo.php");
 
+
+$items = $page->selectAll("SELECT * FROM todo WHERE 1 limit " . $page->offset() . "," . 5);
 ?>
-
 
 <!doctype html>
 <html lang="ja">
@@ -19,7 +22,7 @@ require_once('function.php');
 </h1>
 
     <!-- 検索ボックス -->
-<form action="serch.php" method="get">
+<form action="search.php" method="get">
     <input type="text" name="keyword" style="margin: 10px">
      <button type="submit" >ToDo検索</button>
 </form>
@@ -38,7 +41,7 @@ require_once('function.php');
         <th>編集</th>
         <th>削除</th>
     </tr>
-    <?php foreach($todo_datas as $data): ?>
+    <?php foreach($items as $data): ?>
     <tr>
         <td><?php echo $data['ID'] ?></td>
         <td><?php echo Escape($data['title']) ?></td>
@@ -46,36 +49,35 @@ require_once('function.php');
         <td><?php echo $data['created_at'] ?></td>
         <td>
             <a href="edit.php?id=<?php echo $data["ID"]?>">編集</a>
-            <!-- <form action="edit.php">
-                <button type="submit" style="padding: 10px;font-size: 16px;">編集する</button>
-            </form>-->
         </td>
         <td>
             <a href="delete.php?id=<?php echo $data["ID"]?>">削除</a>
-            <!-- <form action="delete.php" >
-                <button type="submit" style="padding: 10px;font-size: 16px;" >削除する</button>
-            </form> -->
         </td>
     </tr>
     <?php endforeach; ?>
 </table>
 
-    <!-- ページング -->
-    <?php if ($page > 1): ?>
-        <a href="?page=<?= Escape($page)-1 ?>">前へ</a>
+    ページング
+    <?php if ($page->nowpage() > 1): ?>
+        <a href="?page=<?= Escape($page->nowpage())-1 ?>">前へ</a>
     <?php endif; ?>
 
-    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-        <?php if ($page == $i): ?>
+    <?php for ($i = 1; $i <= $page->TotalPages(); $i++): ?>
+        <?php if ($page->nowpage() == $i): ?>
             <strong><a href="?page=<?= Escape($i); ?>"><?= Escape($i); ?></a></strong>
         <?php else: ?>
             <a href="?page=<?= Escape($i); ?>"><?= Escape($i); ?></a>
         <?php endif; ?>
     <?php endfor; ?>
 
-    <?php if ($page < $total_pages): ?>
+    <?php if ($page->nowpage() < $page->Totalpages()): ?>
         <a href="?page=<?= Escape($page)+1 ?>">次へ</a>
     <?php endif; ?>
 
+
+
+
+</body>
+</html>
 </body>
 </html>

@@ -1,8 +1,8 @@
 <?php
+require_once(__DIR__ . "/application/function.php");
+require_once(__DIR__ . "/class/todo.php");
 
-require_once('function.php');
-$dbh = dbconnect();
-
+$id = $_GET['id'];
 $result = serch_fromID($dbh,$id);
 
 ?>
@@ -20,7 +20,7 @@ $result = serch_fromID($dbh,$id);
 <h1>
     編集ページ
 </h1>
-<form action="index.php" method="post">
+<form action="confirm.php" method="post">
                 <input type="hidden" name="id" value="<?php if (!empty($result['ID'])) echo(escape($result['ID']));?>">
             <p>
                 <label>タイトル：</label>

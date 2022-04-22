@@ -8,11 +8,10 @@
     <title>Create Page</title>
 </head>
 <body>
-
 <h1>
     新規投稿
 </h1>
-<form method="post" action="index.php">
+<form method="post" action="confirm.php">
     <div style="margin: 10px">
         <label for="title">タイトル：</label>
         <input id="title"  name="title" type="text" >

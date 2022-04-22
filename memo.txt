@@ -1,0 +1,44 @@
+class todo{
+    private 
+    insert($dbh)
+}
+
+＄dbh = new db();
+$todo = new todo();
+
+$todo->insert($dbh)
+$
+
+confirm.php↓の３ファイルにわける
+
+//したいこと//
+
+create_done.php
+<?php
+
+    if(もしポストうけとったら){
+    $todo->insert($_POST['title'],&_POST['content']);
+    echo "投稿しました";
+    }
+
+?>
+
+edit_done.php
+<?php
+
+    if(もしポストうけとったら){
+    $todo->edit($_POST['title'],&_POST['content']);
+    echo "更新しました";
+    }
+
+?>
+
+delete_done.php
+<?php
+
+    if(もしゲットうけとったら){
+    $todo->delete($_['id']);
+    echo "更新しました";
+    }
+
+?>

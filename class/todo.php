@@ -1,52 +1,46 @@
 <?php
-require_once('DB.php');
-require_once('function.php');
+require_once __DIR__ . '/../application/db.php';
+//todoクラス
+class todo {
 
-class todo{
-    //投稿
-    public function insertToDo($dbh,$title,$content){ 
+    private $dbh;
 
-        $sql='INSERT INTO todo(title,content,created_at,updated_at)VALUES (?,?,?,?)';
-        $stmt = $dbh->prepare($sql);
-        $data[] = $title;
-        $data[] = $content;
-        $data[] = date('Y-m-d H:i:s', strtotime('+9hour'));
-        $data[] = date('Y-m-d H:i:s', strtotime('+9hour'));
-    
-        $result = $stmt->execute($data);
-    
-        return $result;
-        $dbh=null;
-    
+    public function __construct(){
+        $this->dbh = new DB();
+    }
+
+    //新規投稿
+    public function Insert()
+    {
+        $title = trim(filter_input(INPUT_POST,'title'));
+        $content = trim(filter_input(INPUT_POST,'content'));
+
+        $stmt = $this->dbh->prepare('INSERT INTO todo(title,content) VALUES(:title,:content)');
+        $stmt->bindValue(':title',$title, PDO::PARAM_STR);
+        $stmt->bindValue(':content',$content, PDO::PARAM_STR);
+        $stmt->execute();
     }
 
     //編集
-    function editToDo($dbh,$id,$title_edit,$content_edit){
+    public function Edit(){
+        $id = trim(filter_input(INPUT_POST,'id'));
+        $title = trim(filter_input(INPUT_POST,'title_edit'));
+        $content = trim(filter_input(INPUT_POST,'content_edit'));
 
-        $sql='UPDATE todo SET title=?,content=?,updated_at=? WHERE id=?';
-        $stmt=$dbh->prepare($sql);
-        $data[]= $title_edit;
-        $data[]= $content_edit;
-        $data[] = date('Y-m-d H:i:s', strtotime('+9hour'));
-        $data[]= $id;
-    
-        $result = $stmt->execute($data);
-    
-        return $result;
-        $dbh=null;
+        $stmt = $this->dbh->prepare("UPDATE todo SET title=:title_edit,content=:content_edit WHERE id=:id");
+        $stmt->bindValue(':id',$id, PDO::PARAM_INT);
+        $stmt->bindValue(':title_edit',$title, PDO::PARAM_STR);
+        $stmt->bindValue(':content_edit',$content, PDO::PARAM_STR);
+        $stmt->execute();
     }
-    
     //削除
-    function deleteToDo($dbh,$id){
-
-        $sql="DELETE FROM todo WHERE id = '".$id."' ";
-        $result = $dbh->query($sql);
-        if(!$result){
-            throw new Exception('削除できません');
-        }
+    public function delete($id){
+    $sql="DELETE FROM todo WHERE id = '".$id."' ";
+    $this->dbh->query($sql);
     }
-
-
 }
+
+$todo = new todo();
+
 
 ?>
