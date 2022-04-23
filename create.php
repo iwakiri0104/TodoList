@@ -9,13 +9,12 @@
 </head>
 <body>
 <h1>
-    新規投稿
+    New Todo
 </h1>
 <form method="post" action="confirm.php">
     <div style="margin: 10px">
         <label for="title">タイトル：</label>
         <input id="title"  name="title" type="text" >
-         
     </div>
     <div style="margin: 10px">
         <label for="content">内容：</label>
