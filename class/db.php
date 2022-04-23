@@ -1,6 +1,6 @@
 <?php
 
-//データベースに
+//DBクラス
 class DB
 {
   const DSN ='mysql:dbname=TodoList;host=localhost;charset=utf8';
@@ -55,6 +55,4 @@ class DB
 
 //dbクラスのインスタンス化
 $db = new db();
-$dbh = $db->dbh();
-
 ?>
