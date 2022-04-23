@@ -1,10 +1,11 @@
 <?php
+//GETで受け取ったidを元に編集内容をフォームに表示するページ
+
 require_once(__DIR__ . "/class/db.php");
 require_once(__DIR__ . "/class/safety.php");
 
 $id = $_GET['id'];
 $result = $db->DataFromID($id);
-
 ?>
 
 <!doctype html>
@@ -24,17 +25,14 @@ $result = $db->DataFromID($id);
                 <input type="hidden" name="id" value="<?php if (!empty($result['ID'])) echo(escape($result['ID']));?>">
             <p>
                 <label>タイトル：</label>
-                <input type="text" name="title_edit" value="<?php if (!empty($result['title'])) echo(escape($result['title']));?>">
+                <input type="text" name="title" value="<?php if (!empty($result['title'])) echo(escape($result['title']));?>">
             </p>
             <p>
                 <label>内容：</label>
-                <input type="text" name="content_edit" value="<?php if (!empty($result['content'])) echo(escape($result['content']));?>">
+                <input type="text" name="content" value="<?php if (!empty($result['content'])) echo(escape($result['content']));?>">
             </p>
             <input type="submit" value="編集する">
-
-
 </form>
-
 <form action="index.php">
     <button type="submit" name="back">戻る</button>
 </form>

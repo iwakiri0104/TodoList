@@ -1,11 +1,7 @@
 <?php
 require_once(__DIR__ . "/class/safety.php");
 require_once(__DIR__ . "/class/page.php");
-
-//表示するデータ（５件）
-$items = $pages->selectAll("SELECT * FROM todo WHERE 1 limit " . $pages->offset() . "," . $pages->MaxPerPage() );
 ?>
-
 <!doctype html>
 <html lang="ja">
 <head>
@@ -19,13 +15,11 @@ $items = $pages->selectAll("SELECT * FROM todo WHERE 1 limit " . $pages->offset(
 <h1>
     Todo一覧
 </h1>
-
     <!-- 検索ボックス -->
 <form action="search.php" method="get">
     <input type="text" name="keyword" style="margin: 10px">
      <button type="submit" >ToDo検索</button>
 </form>
-
     <!-- 新規投稿 -->
 <form action="create.php">
     <button type="submit" style="padding: 10px;font-size: 16px;margin-bottom: 10px">新規投稿</button>
@@ -55,7 +49,6 @@ $items = $pages->selectAll("SELECT * FROM todo WHERE 1 limit " . $pages->offset(
     </tr>
     <?php endforeach; ?>
 </table>
-
     <!-- ページング -->
     <?php if ($pages->nowpage() > 1): ?>
         <a href="?page=<?= Escape($pages->nowpage())-1 ?>">前へ</a>
@@ -72,8 +65,6 @@ $items = $pages->selectAll("SELECT * FROM todo WHERE 1 limit " . $pages->offset(
     <?php if ($pages->nowpage() < $pages->TotalPages()): ?>
         <a href="?page=<?= Escape($pages->nowpage())+1 ?>">次へ</a>
     <?php endif; ?>
-
-
 </body>
 </html>
 </body>

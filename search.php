@@ -1,13 +1,12 @@
 <?php
+//検索結果を表示する画面
+
 require_once(__DIR__ . "/class/safety.php");
 require_once(__DIR__ . "/class/page.php");
 
 $keyword = $_GET['keyword'];
 
-//表示するデータ（５件）
-$items = $pages->selectAll("SELECT * FROM todo WHERE title like " . "'%". $keyword ."%'". "limit " . $pages->offset() . "," . $pages->MaxPerPage() );
 ?>
-
 <!doctype html>
 <html lang="ja">
 <head>
@@ -23,7 +22,7 @@ $items = $pages->selectAll("SELECT * FROM todo WHERE title like " . "'%". $keywo
 </h1>
 
     <!-- 検索ボックス -->
-<form action="seach.php" method="get">
+<form action="search.php" method="get">
     <input type="text" name="keyword" style="margin: 10px">
      <button type="submit" >ToDo検索</button>
 </form>
