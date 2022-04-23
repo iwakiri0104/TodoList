@@ -6,6 +6,7 @@ require_once(__DIR__ . "/class/safety.php");
 
 $id = $_GET['id'];
 $result = $db->DataFromID($id);
+
 ?>
 
 <!doctype html>
