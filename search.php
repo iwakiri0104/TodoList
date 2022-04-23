@@ -4,6 +4,7 @@
 require_once(__DIR__ . "/class/safety.php");
 require_once(__DIR__ . "/class/page.php");
 
+//GETで受け取った検索ワードを格納
 $keyword = $_GET['keyword'];
 
 ?>
@@ -20,7 +21,6 @@ $keyword = $_GET['keyword'];
 <h1>
     検索結果
 </h1>
-
     <!-- 検索ボックス -->
 <form action="search.php" method="get">
     <input type="text" name="keyword" style="margin: 10px">
@@ -51,8 +51,6 @@ $keyword = $_GET['keyword'];
     </tr>
     <?php endforeach; ?>
 </table>
-
-
         <!-- ページング -->
         <?php if ($pages->nowpage() > 1): ?>
         <a href="?page=<?= Escape($pages->nowpage())-1 ?>&keyword=<?= Escape($keyword); ?>">前へ</a>
@@ -69,8 +67,6 @@ $keyword = $_GET['keyword'];
     <?php if ($pages->nowpage() < $pages->TotalPages()): ?>
         <a href="?page=<?= Escape($pages->nowpage())+1 ?>&keyword=<?= Escape($keyword); ?>">次へ</a>
     <?php endif; ?>
-
-
  <form action="index.php">
     <button type="submit" name="back">ToDo一覧に戻る</button>
 </form>
