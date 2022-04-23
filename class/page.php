@@ -1,7 +1,10 @@
 <?php
 require_once(__DIR__ . "/db.php");
+
+//ページクラス
 class page extends DB{
 
+    //１ページにおける最大表示件数を定義
     const MaxPerPage = 5;
 
     public function MaxPerPage(){
@@ -11,7 +14,7 @@ class page extends DB{
     //データ数を取得
     public function TotalTodos(){
         if(!isset($_GET['keyword'])) return $this->dbh->query("SELECT count(*) FROM todo")->fetchColumn();
-        if(isset($_GET['keyword'])) return $this->dbh->query("SELECT count(*) FROM todo WHERE title like " . "%" . $_GET["keyword"] . "%")->fetchColumn();
+        if(isset($_GET['keyword'])) return $this->dbh->query("SELECT count(*) FROM todo WHERE title like " . "'%". $_GET['keyword']."%'")->fetchColumn();
     }
 
     //合計ページ数を取得
@@ -28,10 +31,11 @@ class page extends DB{
 
     //データの取得開始位置
     public function offset(){
-        return (self::nowpage() - 1) * 5;
+        return (self::nowpage() - 1) * self::MaxPerPage;
     }
 
 }
+
 //pageクラスのインスタンス化
 $pages = new page();
 

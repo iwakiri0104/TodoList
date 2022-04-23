@@ -1,8 +1,8 @@
 <?php
 require_once(__DIR__ . "/class/safety.php");
 require_once(__DIR__ . "/class/page.php");
-$test = $pages->TotalTodos();
-var_dump($test);
+
+//表示するデータ（５件）
 $items = $pages->selectAll("SELECT * FROM todo WHERE 1 limit " . $pages->offset() . "," . $pages->MaxPerPage() );
 ?>
 
@@ -17,11 +17,11 @@ $items = $pages->selectAll("SELECT * FROM todo WHERE 1 limit " . $pages->offset(
 </head>
 <body>
 <h1>
-    おまえがすべきこと一覧
+    Todo一覧
 </h1>
 
     <!-- 検索ボックス -->
-<form action="test.php" method="get">
+<form action="search.php" method="get">
     <input type="text" name="keyword" style="margin: 10px">
      <button type="submit" >ToDo検索</button>
 </form>

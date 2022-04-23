@@ -1,5 +1,6 @@
 <?php
 
+//データベースに
 class DB
 {
   /* プロパティ(定数)の宣言 */
@@ -51,7 +52,7 @@ class DB
         return $stmt->fetchall(PDO::FETCH_ASSOC);
     }
 
-    //idからデータを呼び出すメソッド
+    //IDを元にデータを取得メソッド
     public function DataFromID($id){
         $stmt=$this->dbh->prepare('SELECT * FROM todo WHERE id = :id');
         $stmt->execute(array(':id' => $_GET["id"]));

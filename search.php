@@ -1,7 +1,11 @@
 <?php
-$keyword = $_GET['keyword'];
-$items = $pages->selectAll("SELECT * FROM todo WHERE title like ".$db->Keyword($keyword). "limit " . $pages->offset() . "," . $pages->MaxPerPage() );
+require_once(__DIR__ . "/class/safety.php");
+require_once(__DIR__ . "/class/page.php");
 
+$keyword = $_GET['keyword'];
+
+//表示するデータ（５件）
+$items = $pages->selectAll("SELECT * FROM todo WHERE title like " . "'%". $keyword ."%'". "limit " . $pages->offset() . "," . $pages->MaxPerPage() );
 ?>
 
 <!doctype html>
@@ -19,7 +23,7 @@ $items = $pages->selectAll("SELECT * FROM todo WHERE title like ".$db->Keyword($
 </h1>
 
     <!-- 検索ボックス -->
-<form action="test.php" method="get">
+<form action="seach.php" method="get">
     <input type="text" name="keyword" style="margin: 10px">
      <button type="submit" >ToDo検索</button>
 </form>
@@ -50,21 +54,21 @@ $items = $pages->selectAll("SELECT * FROM todo WHERE title like ".$db->Keyword($
 </table>
 
 
-    <!-- ページング -->
-    <?php if ($pages->nowpage() > 1): ?>
-        <a href="?page=<?= Escape($pages->nowpage())-1 ?>">前へ</a>
+        <!-- ページング -->
+        <?php if ($pages->nowpage() > 1): ?>
+        <a href="?page=<?= Escape($pages->nowpage())-1 ?>&keyword=<?= Escape($keyword); ?>">前へ</a>
     <?php endif; ?>
 
     <?php for ($i = 1; $i <= $pages->TotalPages(); $i++): ?>
         <?php if ($pages->nowpage() == $i): ?>
-            <strong><a href="?page=<?= Escape($i); ?>"><?= Escape($i); ?></a></strong>
+            <strong><a href="?page=<?= Escape($i); ?>&keyword=<?= Escape($keyword); ?>"><?= Escape($i); ?></a></strong>
         <?php else: ?>
-            <a href="?page=<?= Escape($i); ?>"><?= Escape($i); ?></a>
+            <a href="?page=<?= Escape($i); ?>&keyword=<?= Escape($keyword); ?>"><?= Escape($i); ?></a>
         <?php endif; ?>
     <?php endfor; ?>
 
     <?php if ($pages->nowpage() < $pages->TotalPages()): ?>
-        <a href="?page=<?= Escape($pages->nowpage())+1 ?>">次へ</a>
+        <a href="?page=<?= Escape($pages->nowpage())+1 ?>&keyword=<?= Escape($keyword); ?>">次へ</a>
     <?php endif; ?>
 
 

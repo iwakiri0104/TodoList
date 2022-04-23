@@ -34,6 +34,7 @@ class todo {
         $stmt->bindValue(':content_edit',$content, PDO::PARAM_STR);
         $stmt->execute();
     }
+    
     //削除機能
     public function delete($id){
     $sql="DELETE FROM todo WHERE id = '".$id."' ";
