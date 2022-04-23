@@ -61,7 +61,6 @@ require_once(__DIR__ . "/class/page.php");
             <a href="?page=<?= Escape($i); ?>"><?= Escape($i); ?></a>
         <?php endif; ?>
     <?php endfor; ?>
-
     <?php if ($pages->nowpage() < $pages->TotalPages()): ?>
         <a href="?page=<?= Escape($pages->nowpage())+1 ?>">次へ</a>
     <?php endif; ?>
