@@ -51,8 +51,16 @@ class DB
         return $stmt->fetchall(PDO::FETCH_ASSOC);
     }
 
+    //idからデータを呼び出すメソッド
+    public function DataFromID($id){
+        $stmt=$this->dbh->prepare('SELECT * FROM todo WHERE id = :id');
+        $stmt->execute(array(':id' => $_GET["id"]));
+        $result = 0;
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 }
-//インスタンス化
+//dbクラスのインスタンス化
 $db = new db();
 $dbh = $db->dbh();
 

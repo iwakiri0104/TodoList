@@ -1,13 +1,7 @@
 <?php
-require_once(__DIR__ . "/application/config.php");
-require_once(__DIR__ . "/application/function.php");
-require_once(__DIR__ . "/class/page.php");
-$keyword = $_GET["keyword"];
-$SearchResults = getSearchResult($dbh, $keyword);
-$page = $SearchResults[0];
-$total_results = $SearchResults[1];
-$total_pages = $SearchResults[2];
-$todo_datas = $SearchResults[3];
+$keyword = $_GET['keyword'];
+$items = $pages->selectAll("SELECT * FROM todo WHERE title like ".$db->Keyword($keyword). "limit " . $pages->offset() . "," . $pages->MaxPerPage() );
+
 ?>
 
 <!doctype html>
@@ -25,7 +19,7 @@ $todo_datas = $SearchResults[3];
 </h1>
 
     <!-- 検索ボックス -->
-<form action="serch.php" method="get">
+<form action="test.php" method="get">
     <input type="text" name="keyword" style="margin: 10px">
      <button type="submit" >ToDo検索</button>
 </form>
@@ -40,7 +34,7 @@ $todo_datas = $SearchResults[3];
         <th>編集</th>
         <th>削除</th>
     </tr>
-    <?php foreach($todo_datas as $data): ?>
+    <?php foreach($items as $data): ?>
     <tr>
         <td><?php echo $data['ID'] ?></td>
         <td><?php echo Escape($data['title']) ?></td>
@@ -57,21 +51,22 @@ $todo_datas = $SearchResults[3];
 
 
     <!-- ページング -->
-    <?php if ($page > 1): ?>
-        <a href="?page=<?= Escape($page)-1 ?>">前へ</a>
+    <?php if ($pages->nowpage() > 1): ?>
+        <a href="?page=<?= Escape($pages->nowpage())-1 ?>">前へ</a>
     <?php endif; ?>
 
-    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-        <?php if ($page == $i): ?>
+    <?php for ($i = 1; $i <= $pages->TotalPages(); $i++): ?>
+        <?php if ($pages->nowpage() == $i): ?>
             <strong><a href="?page=<?= Escape($i); ?>"><?= Escape($i); ?></a></strong>
         <?php else: ?>
             <a href="?page=<?= Escape($i); ?>"><?= Escape($i); ?></a>
         <?php endif; ?>
     <?php endfor; ?>
 
-    <?php if ($page < $total_pages): ?>
-        <a href="?page=<?= Escape($page)+1 ?>">次へ</a>
+    <?php if ($pages->nowpage() < $pages->TotalPages()): ?>
+        <a href="?page=<?= Escape($pages->nowpage())+1 ?>">次へ</a>
     <?php endif; ?>
+
 
  <form action="index.php">
     <button type="submit" name="back">ToDo一覧に戻る</button>

@@ -1,9 +1,9 @@
 <?php
-require_once(__DIR__ . "/application/function.php");
-require_once(__DIR__ . "/class/todo.php");
+require_once(__DIR__ . "/class/db.php");
+require_once(__DIR__ . "/class/safety.php");
 
 $id = $_GET['id'];
-$result = serch_fromID($dbh,$id);
+$result = $db->DataFromID($id);
 
 ?>
 

@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '/../application/db.php';
+require_once(__DIR__ . "/db.php");
+
 //todoクラス
 class todo {
 
@@ -21,7 +22,7 @@ class todo {
         $stmt->execute();
     }
 
-    //編集
+    //編集機能
     public function Edit(){
         $id = trim(filter_input(INPUT_POST,'id'));
         $title = trim(filter_input(INPUT_POST,'title_edit'));
@@ -33,13 +34,14 @@ class todo {
         $stmt->bindValue(':content_edit',$content, PDO::PARAM_STR);
         $stmt->execute();
     }
-    //削除
+    //削除機能
     public function delete($id){
     $sql="DELETE FROM todo WHERE id = '".$id."' ";
     $this->dbh->query($sql);
     }
 }
 
+//todoクラスのインスタンス化
 $todo = new todo();
 
 

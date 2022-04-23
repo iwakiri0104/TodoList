@@ -1,18 +1,16 @@
 <?php
-require_once(__DIR__ . "/application/db.php");
-
-
+require_once(__DIR__ . "/class/todo.php");
+require_once(__DIR__ . "/class/db.php");
 $id = '';
 if(!empty($_GET['id'])){
     $id = $_GET['id'];
+    echo "タイトル 「  " . $db->DataFromID($id)['title'] ."  」". " 内容 「  ". $db->DataFromID($id)['content'] ."  」";
+    echo "を削除したじょ〜〜〜〜！！！";
     $todo->delete($id);
-    echo "削除したじょ〜〜〜〜！！！";
 }else{
     throw new Exception('空のIDです');
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

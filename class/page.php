@@ -1,29 +1,38 @@
 <?php
-require_once __DIR__ . '/../application/config.php';
-require_once __DIR__ . '/../application/function.php';
-require_once __DIR__ . '/../application/db.php';
-
+require_once(__DIR__ . "/db.php");
 class page extends DB{
 
+    const MaxPerPage = 5;
+
+    public function MaxPerPage(){
+        return self::MaxPerPage;
+    }
+
+    //データ数を取得
     public function TotalTodos(){
-        return $this->dbh->query("SELECT count(*) FROM todo")->fetchColumn();
+        if(!isset($_GET['keyword'])) return $this->dbh->query("SELECT count(*) FROM todo")->fetchColumn();
+        if(isset($_GET['keyword'])) return $this->dbh->query("SELECT count(*) FROM todo WHERE title like " . "%" . $_GET["keyword"] . "%")->fetchColumn();
     }
 
+    //合計ページ数を取得
     public function TotalPages(){
-        return ceil(self::TotalTodos() / 5);
+        return ceil(self::TotalTodos() / self::MaxPerPage);
     }
 
+    //現在のページ番号を取得
     public function nowpage(){
         if (!isset($_GET['page'])) return (int)1;
         if ($_GET['page'] > self::totalPages()) return self::totalPages();
-        if ($_GET['page'] < self::totalPages()) return $_GET['page'];
+        if ($_GET['page'] <= self::totalPages()) return $_GET['page'];
     }
 
+    //データの取得開始位置
     public function offset(){
         return (self::nowpage() - 1) * 5;
     }
 
 }
+//pageクラスのインスタンス化
 $pages = new page();
 
 

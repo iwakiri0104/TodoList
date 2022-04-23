@@ -1,10 +1,9 @@
 <?php
-require_once(__DIR__ . "/application/function.php");
+require_once(__DIR__ . "/class/safety.php");
 require_once(__DIR__ . "/class/page.php");
-require_once(__DIR__ . "/class/todo.php");
-
-
-$items = $pages->selectAll("SELECT * FROM todo WHERE 1 limit " . $pages->offset() . "," . 5);
+$test = $pages->TotalTodos();
+var_dump($test);
+$items = $pages->selectAll("SELECT * FROM todo WHERE 1 limit " . $pages->offset() . "," . $pages->MaxPerPage() );
 ?>
 
 <!doctype html>
@@ -22,7 +21,7 @@ $items = $pages->selectAll("SELECT * FROM todo WHERE 1 limit " . $pages->offset(
 </h1>
 
     <!-- 検索ボックス -->
-<form action="search.php" method="get">
+<form action="test.php" method="get">
     <input type="text" name="keyword" style="margin: 10px">
      <button type="submit" >ToDo検索</button>
 </form>
