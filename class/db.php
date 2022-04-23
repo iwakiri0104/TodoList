@@ -49,7 +49,6 @@ class DB
     public function DataFromID($id){
         $stmt=$this->dbh->prepare('SELECT * FROM todo WHERE id = :id');
         $stmt->execute(array(':id' => $_GET["id"]));
-        $result = 0;
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
