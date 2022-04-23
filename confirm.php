@@ -1,11 +1,12 @@
 <?php
+//新規投稿、修正後の処理画面
+
 require_once(__DIR__ . "/class/todo.php");
 
-
-//新規投稿、修正後の処理画面
 //if(バリデーションメソッド)がtrueなら投稿、削除の仕様に変更予定
 //バリデーションメソッド：指定外の値を受け取ったらメッセージ表示
 
+//idを受け取れば編集、受け取らなければ新規投稿
 if(isset($_POST['title']) && isset($_POST['content']) && isset($_POST['id']))
 {
     $todo->Edit($_POST['id']);
