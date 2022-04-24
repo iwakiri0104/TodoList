@@ -7,13 +7,13 @@ require_once(__DIR__ . "/class/todo.php");
 //バリデーションメソッド：指定外の値を受け取ったらメッセージ表示
 
 //idを受け取れば編集、受け取らなければ新規投稿
-if(isset($_POST['title']) && isset($_POST['content']) && isset($_POST['id']))
+if(isset($_POST['title']) && isset($_POST["content"])){
+    $todo->insert();
+    echo "投稿しました";
+}elseif(isset($_POST['title']) && isset($_POST['content']) && isset($_POST['id']))
 {
     $todo->Edit($_POST['id']);
     echo "修正しました";
-}elseif(isset($_POST['title']) && isset($_POST["content"])){
-    $todo->insert();
-    echo "投稿しました";
 }
 ?>
 

@@ -5,7 +5,7 @@ require_once(__DIR__ . "/class/db.php");
 $id = $_GET['id'];
 
 if(!empty($_GET['id'])){
-    echo "タイトル 「  " . $db->DataFromID($id)['title'] ."  」". " 内容 「  ". $db->DataFromID($id)['content'] ."  」"."を削除したじょ〜〜〜〜！！！";;
+    echo "タイトル 「  " . $db->DataFromID($id)['title'] ."  」". " 内容 「  ". $db->DataFromID($id)['content'] ."  」"."を削除したじょ〜〜〜〜！！！";
     $todo->delete($id);
 }else{
     throw new Exception('空のIDです');

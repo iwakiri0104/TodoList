@@ -51,6 +51,12 @@ class DB
         $stmt->execute(array(':id' => $_GET["id"]));
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    //データ数を取得 getを受け取れば検索ワードを含んだデータ数、受け取らなければ通常のデータ数
+    public function TotalTodos(){
+        if(!isset($_GET['keyword'])) return $this->dbh->query("SELECT count(*) FROM todo")->fetchColumn();
+        if(isset($_GET['keyword'])) return $this->dbh->query("SELECT count(*) FROM todo WHERE title like " . "'%". $_GET['keyword']."%'")->fetchColumn();
+    }
 }
 
 //dbクラスのインスタンス化

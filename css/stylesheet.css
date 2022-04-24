@@ -1,0 +1,25 @@
+.title{
+color:#3EB1C6;
+}
+
+table.table01 {
+	width:90%;
+	border-right:#3EB1C6 solid 1px;
+	border-collapse: collapse;
+    
+}
+table.table01 thead th {
+	background:#3EB1C6;
+	color:#FFF;
+	padding:10px 15px;
+	border-right:#FFF solid 1px;
+	border-bottom:#FFF solid 1px;
+}
+
+table.table01 tbody td {
+	background:#FFF;
+	padding:10px 15px;
+	border-left:#3EB1C6 solid 1px;
+	border-bottom:#3EB1C6 solid 1px;
+	vertical-align:top;
+}
