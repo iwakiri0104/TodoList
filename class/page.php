@@ -6,8 +6,6 @@ class page extends DB{
 
     //１ページにおける最大表示件数を定義
     const MaxPerPage = 5;
-    const StartHref = '<a href="';
-    const EndHref = '>"';
 
     //合計ページ数を取得
     public function TotalPages(){
