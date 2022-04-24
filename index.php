@@ -6,31 +6,28 @@ $keyword = '';
 if(!empty($_GET['keyword'])){
     $keyword = $_GET['keyword'];
 }
-
 ?>
 <!doctype html>
-<html lang="ja">
-
 <!-- HEAD -->
 <?php include 'inc/head.php'; ?> 
-
+<!--body-->
 <body>
 <h1 class="title">
-<?php if (empty($keyword)) :?>
+    <?php if (empty($keyword)) :?>
         Todo一覧
-<?php elseif (!empty($keyword))  :?>
+    <?php elseif (!empty($keyword))  :?>
         検索結果
-<?php endif ?> 
+    <?php endif ?> 
 </h1>
 <!-- 検索ボックス -->
-<form action=" " method="get">
-    <input type="text" name="keyword" style="margin: 10px">
-     <button type="submit" >ToDo検索</button>
-</form>
+<div class ="right">
+    <form action=" " method="get">
+    <input type="text" name="keyword" class="Seach-Item-Input" placeholder="検索ワードを入力">
+        <button type="submit" class="Todo-Post-Btn" >ToDo検索</button>
+    </form>
+</div>
 <!-- 新規投稿 -->
-<form action="PostForm.php">
-    <button type="submit" style="padding: 10px;font-size: 16px;margin-bottom: 10px">新規投稿</button>
-</form>
+<?php include 'inc/newpost.php'; ?> 
 <!-- テーブル -->
   <table class="table01">
     <thead>
@@ -45,7 +42,8 @@ if(!empty($_GET['keyword'])){
     </thead>
     <tbody>
     <?php foreach($items as $data): ?>
-    <tr>
+        </thead>
+    <tbody>
         <td><?php echo $data['ID'] ?></td>
         <td><?php echo Escape($data['title']) ?></td>
         <td><?php echo Escape($data['content']) ?></td>

@@ -11,39 +11,40 @@ if(!empty($_GET['id'])){
 ?>
 <!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Page</title>
-</head>
+<!-- HEAD -->
+<?php include 'inc/head.php'; ?> 
 <body>
 <h1>
+ <!-- GETでIDを受け取るor受け取らないで表示内容変更 -->
 <?php if (empty($result['ID'])) :?>
-    <h2>新規投稿</h2>
+    <h2 class="title">新規投稿</h2>
 <?php elseif (!empty($result['ID']))  :?>
-    <h2>編集画面</h2>
+    <h2 class="title">編集画面</h2>
 <?php endif ?>
 </h1>
 <form action="confirm.php" method="post">
-                <input type="hidden" name="id" value="<?php if (!empty($result['ID'])) echo(escape($result['ID']));?>">
-            <p>
-                <label>タイトル：</label>
-                <input type="text" name="title" placeholder= "例:休日" value="<?php if (!empty($result['title'])) echo(escape($result['title']));?>">
-            </p>
-            <p>
-                <label>内容：</label>
-                <input type="text" name="content" placeholder= "例:アニメ5作消化" value="<?php if (!empty($result['content'])) echo(escape($result['content']));?>">
-            </p>
-            <?php if (empty($result['ID'])) :?>
-                <input type="submit" value="投稿する">
-            <?php elseif (!empty($result['ID']))  :?>
-                <input type="submit" value="編集する">
-            <?php endif ?>
+<div class="Form">
+    <div class="Form-Item">
+        <p class="Form-Item-Label">
+        <span class="Form-Item-Label-Required">必須</span>タイトル
+        </p>
+        <input type="hidden" name="id" value="<?php if (!empty($result['ID'])) echo(escape($result['ID']));?>">
+        <input type="text" class="Form-Item-Input" name="title" placeholder="例）休日" value="<?php if (!empty($result['title'])) echo(escape($result['title']));?>">
+    </div>
+    <div class="Form-Item">
+        <p class="Form-Item-Label">
+        <span class="Form-Item-Label-Required">必須</span>内容</p>
+        <input type="text" class="Form-Item-Input" name="content" placeholder="例）アニメ100話消化" value="<?php if (!empty($result['content'])) echo(escape($result['content']));?>">
+    </div>
+    <?php if (empty($result['ID'])) :?>
+        <input type="submit" class="Form-Btn" value="投稿する">
+    <?php elseif (!empty($result['ID']))  :?>
+        <input type="submit" class="Form-Btn" value="編集する">
+    <?php endif ?>
+</div>
 </form>
 <form action="index.php">
-    <button type="submit" name="back">戻る</button>
-</form>
+        <button type="submit" class="Form-Btn" name="back">戻る</button>
+    </form>
 </body>
 </html>

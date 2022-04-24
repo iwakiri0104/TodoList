@@ -10,7 +10,8 @@
             index
     <?php elseif (!empty($keyword))  :?>
             searchPage
+    <?php elseif (!empty($id))  :?>
+            searchPage
     <?php endif ?> 
     </title>
- 
 </head>

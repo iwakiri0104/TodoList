@@ -1,7 +1,4 @@
-
-   
-   
-   <!-- 通常ページング -->
+<!-- 通常ページング -->
    <?php if(!isset($_GET['keyword'])) :?>
         <?php if ($pages->nowpage() > 1): ?>
             <a href="?page=<?= Escape($pages->PreviousPage()) ?>">前へ</a>
@@ -18,8 +15,7 @@
             <a href="?page=<?= Escape($pages->NexPage()) ?>">次へ</a>
         <?php endif; ?>
     <?php endif;?>
-
-    <!-- 検索結果ページング -->
+ <!-- 検索結果ページング -->
     <?php if(isset($_GET['keyword'])) :?>
         <?php if ($pages->nowpage() > 1): ?>
             <a href="?page=<?= Escape($pages->PreviousPage()) ?>&keyword=<?= Escape($keyword); ?>">前へ</a>
