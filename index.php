@@ -20,12 +20,7 @@ if(!empty($_GET['keyword'])){
     <?php endif ?> 
 </h1>
 <!-- 検索ボックス -->
-<div class ="right">
-    <form action=" " method="get">
-    <input type="text" name="keyword" class="Seach-Item-Input" placeholder="検索ワードを入力">
-        <button type="submit" class="Todo-Post-Btn" >ToDo検索</button>
-    </form>
-</div>
+<?php include 'inc/seachbox.php'; ?> 
 <!-- 新規投稿 -->
 <?php include 'inc/newpost.php'; ?> 
 <!-- テーブル -->
