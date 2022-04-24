@@ -20,7 +20,7 @@ $id = $_GET['id'];
         <?php if(!empty($_GET['id'])) :?>
         <th>ID</th>
         <th>タイトル</th>
-        <th>内容></th>
+        <th>内容</th>
     </tr>
     </thead>
     <tbody>
@@ -36,7 +36,7 @@ $id = $_GET['id'];
     <?php throw new Exception('空のIDです')?>
 <?php endif ?>
 <form action="index.php">
-    <button type="submit" name="back">戻る</button>
+    <button type="submit" name="back" class="Todo-Post-Btn">戻る</button>
 </form>
 </body>
 </html>

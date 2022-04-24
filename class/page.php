@@ -48,5 +48,4 @@ $pages = new page();
 
 // 1ページに表示するデータ
 $items = $pages->FiveDatas();
-
 ?>

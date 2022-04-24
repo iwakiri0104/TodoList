@@ -41,5 +41,4 @@ class todo {
 
 //todoクラスのインスタンス化
 $todo = new todo();
-
 ?>

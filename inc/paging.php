@@ -15,7 +15,16 @@
             <a href="?page=<?= Escape($pages->NexPage()) ?>">次へ</a>
         <?php endif; ?>
     <?php endif;?>
+
+    
  <!-- 検索結果ページング -->
+    <?php
+    $keyword = '';
+    if(!empty($_GET['keyword'])){
+        $keyword = $_GET['keyword'];
+    }
+    ?>
+
     <?php if(isset($_GET['keyword'])) :?>
         <?php if ($pages->nowpage() > 1): ?>
             <a href="?page=<?= Escape($pages->PreviousPage()) ?>&keyword=<?= Escape($keyword); ?>">前へ</a>
@@ -31,6 +40,6 @@
             <a href="?page=<?= Escape($pages->NexPage()) ?>&keyword=<?= Escape($keyword); ?>">次へ</a>
         <?php endif; ?>
         <form action="index.php">
-        <button type="submit" name="back">ToDo一覧に戻る</button>
+        <button type="submit" name="back" class="Todo-Post-Btn">ToDo一覧に戻る</button>
     <?php endif;?>
 
