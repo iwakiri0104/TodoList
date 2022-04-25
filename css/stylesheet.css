@@ -1,0 +1,158 @@
+/* フォームデザイン */
+
+.title{
+color:#5bc8ac;
+text-align:  center;  
+margin-bottom: 60px;
+}
+
+table.table01 {
+	width:90%;
+	border-right:#5bc8ac solid 1px;
+	border-collapse: collapse;
+    
+}
+table.table01 thead th {
+	background:#5bc8ac;
+	color:#FFF;
+	padding:10px 15px;
+	border-right:#FFF solid 1px;
+	border-bottom:#FFF solid 1px;
+}
+
+table.table01 tbody td {
+	background:#FFF;
+	padding:10px 15px;
+	border-left:#5bc8ac solid 1px;
+	border-bottom:#5bc8ac solid 1px;
+	vertical-align:top;
+}
+
+/* フォームデザイン */
+.Form {
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 720px;
+  }
+  
+  
+  .Form-Item {
+    border-top: 1px solid #ddd;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+
+  .Form-Item-Label {
+    width: 100%;
+    max-width: 248px;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .Form-Item-Label.isMsg {
+    margin-top: 8px;
+    margin-bottom: auto;
+
+  }
+  .Form-Item-Label-Required {
+    border-radius: 6px;
+    margin-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 48px;
+    display: inline-block;
+    text-align: center;
+    background: #5bc8ac;
+    color: #fff;
+    font-size: 14px;
+  }
+
+  
+  .Form-Item-Input {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 40px;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 48px;
+    flex: 1;
+    width: 100%;
+    max-width: 410px;
+    background: #eaedf2;
+    font-size: 18px;
+  }
+
+  .Form-Item-Textarea {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-left: 40px;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 216px;
+    flex: 1;
+    width: 100%;
+    max-width: 410px;
+    background: #eaedf2;
+    font-size: 18px;
+  }
+
+  .Form-Btn {
+    border-radius: 6px;
+    margin-top: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 280px;
+    display: block;
+    letter-spacing: 0.05em;
+    background: #5bc8ac;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .Post-Btn {
+    border-radius: 6px;
+    margin-top: 32px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 220px;
+    display: block;
+    letter-spacing: 0.05em;
+    background: #5bc8ac;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 30px;
+  }
+
+  .Seach-Item-Input{
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 100%;
+    max-width: 410px;
+    background: #eaedf2;
+    font-size: 18px;
+  }
+
+  .Todo-Post-Btn{
+    border-radius: 6px;
+    width: 100px;
+    background: #5bc8ac;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+    .right {
+        margin: 0 0 0 auto;
+    }
