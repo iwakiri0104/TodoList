@@ -14,11 +14,6 @@ class todo {
         $this->content = trim(filter_input(INPUT_POST,'content'));
     }
     
-    //タイトル取得
-    public function GetTitle(){
-        return $this->title;
-    }
-
     //新規投稿
     public function Insert()
     {
